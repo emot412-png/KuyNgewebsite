@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kuy Nge Website!</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Nunito',sans-serif;background:linear-gradient(160deg,#f0f5ff 0%,#e8f0fe 50%,#f0f8ff 100%);color:#1e293b;min-height:100vh}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-thumb{background:#90caf9;border-radius:3px}
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.96);backdrop-filter:blur(20px);border-bottom:1.5px solid #e3eaf5;box-shadow:0 2px 16px rgba(21,101,192,0.07);padding:11px 22px;display:flex;align-items:center;justify-content:space-between}
+.navlinks{display:flex;gap:3px;align-items:center;flex-wrap:wrap}
+.nb{background:transparent;border:none;color:#64748b;font-size:13px;font-weight:700;cursor:pointer;padding:7px 11px;border-radius:9px;transition:all .2s;font-family:'Nunito',sans-serif}
+.nb:hover{color:#1565c0;background:#e3f2fd}
+.xpbadge{margin-left:6px;padding:5px 12px;border-radius:16px;background:linear-gradient(135deg,#1565c0,#1976d2);color:#fff;font-size:12px;font-weight:800}
+.page{display:none}.page.active{display:block}
+.hero{padding:64px 16px 44px;text-align:center;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(26px,5vw,52px);font-weight:900;line-height:1.15;margin-bottom:16px;color:#0d2a6e}
+.hero h1 span{background:linear-gradient(135deg,#1565c0,#42a5f5);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:#546e7a;font-size:16px;max-width:480px;margin:0 auto 28px;line-height:1.7;font-weight:600}
+.herobts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btnp{padding:13px 28px;border-radius:13px;background:linear-gradient(135deg,#1565c0,#1976d2);border:none;color:#fff;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 8px 24px rgba(21,101,192,0.3);font-family:'Nunito',sans-serif;transition:transform .2s}
+.btnp:hover{transform:translateY(-2px)}
+.btns{padding:13px 28px;border-radius:13px;background:#fff;border:1.5px solid #90caf9;color:#1565c0;font-size:14px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:transform .2s}
+.btns:hover{transform:translateY(-2px)}
+.stats{max-width:820px;margin:0 auto;padding:0 16px 48px;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.sc{padding:20px 14px;border-radius:16px;text-align:center;background:#fff;border:1.5px solid #e3eaf5;box-shadow:0 4px 14px rgba(21,101,192,0.06)}
+.sn{font-size:28px;font-weight:900;color:#1565c0;margin-bottom:3px}.sl{color:#90a4ae;font-size:12px;font-weight:700}
+#materi{padding:0 16px 72px}
+.mi{max-width:1100px;margin:0 auto}
+.st{text-align:center;color:#0d2a6e;font-size:28px;font-weight:900;margin-bottom:8px}
+.ss{text-align:center;color:#64748b;font-size:14px;max-width:400px;margin:0 auto 20px}
+.catf{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;margin-bottom:28px}
+.cb{padding:6px 14px;border-radius:16px;border:1.5px solid #e3eaf5;background:#fff;color:#64748b;font-weight:700;cursor:pointer;font-size:12px;font-family:'Nunito',sans-serif;transition:all .2s}
+.cb:hover{background:#f0f5ff}.cb.on{border-color:#1565c0;background:#e3f2fd;color:#1565c0}
+.lgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.lc{border-radius:18px;background:#fff;border:1.5px solid #e3eaf5;box-shadow:0 4px 14px rgba(21,101,192,0.05);transition:all .3s;overflow:hidden}
+.lc:not(.locked){cursor:pointer}.lc:not(.locked):hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(21,101,192,0.16)}
+.lc.locked{opacity:.55;cursor:not-allowed}
+.ltop{height:3px;background:#e3eaf5}.lb{padding:16px 18px}
+.lh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.lvbadge{padding:2px 9px;border-radius:10px;font-size:10px;font-weight:800}
+.lt{color:#0d2a6e;font-size:14px;font-weight:800;margin-bottom:4px}
+.ld{color:#90a4ae;font-size:11px;line-height:1.5;margin-bottom:10px}
+.tops{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}
+.top{padding:2px 7px;border-radius:5px;background:#f0f5ff;border:1px solid #e3eaf5;color:#64748b;font-size:10px}
+.lf{padding:7px 11px;border-radius:9px;background:#f0f5ff;border:1px solid #e3eaf5}
+.lf-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.lf-btns{display:flex;gap:6px}
+.lbtn{flex:1;padding:6px 0;border-radius:8px;border:none;font-size:11px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .15s}
+.lbtn:hover{opacity:.85;transform:translateY(-1px)}
+footer{border-top:1.5px solid #e3eaf5;padding:24px 16px;text-align:center;background:#fff;margin-top:40px}
+.chatbtn{position:fixed;bottom:22px;right:22px;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1565c0,#1976d2);border:none;cursor:pointer;font-size:22px;z-index:1001;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(21,101,192,0.4);animation:pls 2s infinite}
+@keyframes pls{0%,100%{box-shadow:0 0 0 0 rgba(21,101,192,0.4)}70%{box-shadow:0 0 0 8px rgba(21,101,192,0)}}
+#chatbox{position:fixed;bottom:84px;right:22px;width:330px;height:480px;background:#fff;border-radius:20px;border:1.5px solid #e3eaf5;box-shadow:0 20px 60px rgba(21,101,192,0.18);display:none;flex-direction:column;z-index:1000}
+#chatbox.open{display:flex}
+.chd{padding:13px 15px;background:linear-gradient(135deg,#1565c0,#1976d2);border-radius:18px 18px 0 0;display:flex;align-items:center;gap:10px}
+.cms{flex:1;overflow-y:auto;padding:12px 10px;display:flex;flex-direction:column;gap:8px;background:#f8faff}
+.cm{max-width:82%;padding:9px 13px;font-size:13px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+.cm.u{align-self:flex-end;border-radius:16px 16px 3px 16px;background:linear-gradient(135deg,#1565c0,#1976d2);color:#fff}
+.cm.b{align-self:flex-start;border-radius:16px 16px 16px 3px;background:#fff;color:#1e293b;box-shadow:0 2px 8px rgba(0,0,0,0.07)}
+.cinp{padding:10px;background:#fff;border-top:1px solid #e3eaf5;border-radius:0 0 18px 18px;display:flex;gap:8px}
+.cinp input{flex:1;padding:9px 12px;border-radius:10px;background:#f0f5ff;border:1.5px solid #c5d8f5;color:#1e293b;font-size:13px;outline:none;font-family:'Nunito',sans-serif}
+.cinp button{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#1565c0,#1976d2);border:none;cursor:pointer;color:#fff;font-size:17px;display:flex;align-items:center;justify-content:center}
+@keyframes bnc{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.dots span{display:inline-block;width:7px;height:7px;border-radius:50%;background:#1565c0;margin:0 2px;animation:bnc .8s ease infinite}
+.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+.ov{display:none;position:fixed;inset:0;background:rgba(10,30,80,0.65);z-index:998;backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:16px}
+.ov.open{display:flex}
+.modal{width:100%;max-width:640px;max-height:92vh;background:#fff;border-radius:22px;box-shadow:0 30px 80px rgba(21,101,192,0.25);overflow:hidden;display:flex;flex-direction:column}
+.mhd{padding:14px 22px;background:linear-gradient(135deg,#1565c0,#1976d2);display:flex;align-items:center;justify-content:space-between}
+.mbd{flex:1;overflow-y:auto;padding:22px}
+.pb{height:3px;background:#e3eaf5}.pf{height:100%;background:linear-gradient(90deg,#1565c0,#42a5f5);transition:width .3s}
+.qbox{background:#f0f5ff;border-radius:12px;padding:18px;margin-bottom:16px;border:1.5px solid #c5d8f5}
+.qt{color:#1565c0;font-weight:700;font-size:11px;margin-bottom:6px}.qq{color:#1e293b;font-weight:700;font-size:15px;line-height:1.5}
+.opts{display:flex;flex-direction:column;gap:8px}
+.ob{padding:12px 16px;border-radius:10px;border:1.5px solid #c5d8f5;background:#f8faff;color:#1e293b;font-weight:600;font-size:13px;cursor:pointer;text-align:left;font-family:'Nunito',sans-serif;transition:all .15s}
+.ob:hover{background:#e3f2fd;border-color:#90caf9}
+.fb{padding:10px 14px;border-radius:10px;margin-bottom:14px;font-weight:700;font-size:14px}
+.fb.ok{background:#e8f5e9;color:#2e7d32;border:1.5px solid #a5d6a7}
+.fb.no{background:#ffebee;color:#c62828;border:1.5px solid #ef9a9a}
+.cstarter{background:#f0f0f0;padding:10px 14px;border-radius:8px;font-family:monospace;font-size:12px;color:#1e293b;margin-bottom:10px;border:1px solid #d0d0d0;white-space:pre-wrap}
+.ca{width:100%;padding:10px 12px;border-radius:8px;border:1.5px solid #c5d8f5;font-family:monospace;font-size:12px;color:#1e293b;resize:vertical;outline:none;background:#f8faff}
+.res{text-align:center;padding:20px}
+.pgwrap{max-width:760px;margin:0 auto;padding:28px 16px}
+.card{background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 16px 48px rgba(21,101,192,0.12);border:1.5px solid #e3eaf5}
+.cardbanner{background:linear-gradient(135deg,#1565c0,#1976d2,#42a5f5);padding:44px 32px 36px;text-align:center;position:relative;overflow:hidden}
+.cbdot{position:absolute;inset:0;opacity:.06;background-image:radial-gradient(circle,#fff 1px,transparent 1px);background-size:28px 28px}
+.cardbody{padding:32px}
+.infogrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:22px}
+.icard{padding:16px;border-radius:14px;text-align:center;background:#f0f5ff;border:1.5px solid #e3eaf5}
+@media(max-width:600px){nav{padding:10px 14px}.nb{font-size:11px;padding:5px 7px}.hero{padding:44px 14px 28px}.lf-btns{flex-direction:column}}
+</style>
+</head>
+<body>
+<nav>
+  <img id="navlogo" src="" alt="Logo" style="height:40px;cursor:pointer" onclick="goHome()">
+  <div class="navlinks">
+    <button class="nb" onclick="goHome()">Beranda</button>
+    <button class="nb" onclick="goMateri()">Materi</button>
+    <button class="nb" onclick="showPage('final')">Final Project</button>
+    <button class="nb" onclick="showPage('about')">Tentang</button>
+    <span class="xpbadge" id="xpbadge">⭐ 0 XP</span>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="pg-home" class="page active">
+  <section class="hero">
+    <div style="position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(21,101,192,0.07) 0%,transparent 70%);top:-180px;left:50%;transform:translateX(-50%);pointer-events:none"></div>
+    <div style="position:relative;max-width:640px;margin:0 auto">
+      <h1>Belajar Bikin Website<br><span>dari Nol sampai Jago!</span></h1>
+      <p>60 level terstruktur dari HTML dasar hingga Full Stack. Pelajari materi, latihan soal, coding challenge, dan chatbot AI!</p>
+      <div class="herobts">
+        <button class="btnp" onclick="goMateri()">🎓 Mulai Belajar!</button>
+        <button class="btns" onclick="showPage('final')">👑 Final Project</button>
+      </div>
+    </div>
+  </section>
+  <div class="stats">
+    <div class="sc"><div style="font-size:26px;margin-bottom:4px">📚</div><div class="sn">60</div><div class="sl">Level</div></div>
+    <div class="sc"><div style="font-size:26px;margin-bottom:4px">📝</div><div class="sn">900+</div><div class="sl">Soal Latihan</div></div>
+    <div class="sc"><div style="font-size:26px;margin-bottom:4px">🤖</div><div class="sn">AI</div><div class="sl">Hasbhi Bot</div></div>
+    <div class="sc"><div style="font-size:26px;margin-bottom:4px">🎉</div><div class="sn">100%</div><div class="sl">Gratis</div></div>
+  </div>
+  <section id="materi">
+    <div class="mi">
+      <h2 class="st">60 Level Pembelajaran</h2>
+      <p class="ss">Klik level untuk belajar materi, lalu kerjakan tes!</p>
+      <div class="catf">
+        <button class="cb on" onclick="filterCat('all',this)">🗂️ Semua</button>
+        <button class="cb" onclick="filterCat('html',this)">🏗️ HTML</button>
+        <button class="cb" onclick="filterCat('css',this)">🎨 CSS</button>
+        <button class="cb" onclick="filterCat('js',this)">⚡ JS</button>
+        <button class="cb" onclick="filterCat('react',this)">⚛️ React</button>
+        <button class="cb" onclick="filterCat('backend',this)">🔧 Backend</button>
+        <button class="cb" onclick="filterCat('advanced',this)">🚀 Advanced</button>
+        <button class="cb" onclick="filterCat('final',this)">👑 Final</button>
+      </div>
+      <div class="lgrid" id="lgrid"></div>
+    </div>
+  </section>
+  <footer>
+    <img id="footlogo" src="" alt="logo" style="height:34px;margin-bottom:8px"><br>
+    <p style="color:#90a4ae;font-size:12px">© 2025 Kuy Nge Website! • Dibuat dengan ❤️ oleh <span style="color:#1565c0;font-weight:800">Muhammad Hasbhi</span></p>
+    <button onclick="showPage('about')" style="background:transparent;border:none;color:#1565c0;font-size:12px;cursor:pointer;margin-top:5px;text-decoration:underline;font-family:'Nunito',sans-serif">Tentang Kami →</button>
+  </footer>
+</div>
+
+<!-- ABOUT -->
+<div id="pg-about" class="page">
+  <div class="pgwrap">
+    <button class="btns" onclick="goHome()" style="margin-bottom:24px">← Kembali</button>
+    <div class="card">
+      <div class="cardbanner"><div class="cbdot"></div>
+        <div style="position:relative">
+          <img id="aboutlogo" src="" alt="Logo" style="height:52px;margin-bottom:14px;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.2))">
+          <h1 style="color:#fff;font-size:28px;font-weight:900;margin:0 0 4px">Kuy Nge Website!</h1>
+          <p style="color:rgba(255,255,255,0.85);font-size:14px;margin:0">Digital Solutions & Web Development</p>
+        </div>
+      </div>
+      <div class="cardbody">
+        <div style="text-align:center;margin-bottom:28px">
+          <div style="font-size:11px;color:#1565c0;letter-spacing:2px;font-weight:800;margin-bottom:14px;text-transform:uppercase">👑 Pendiri</div>
+          <div style="width:110px;height:110px;border-radius:50%;margin:0 auto 14px;overflow:hidden;border:3px solid #1565c0;box-shadow:0 0 0 4px #e3eaf5,0 8px 24px rgba(21,101,192,0.2)">
+            <img id="founderphoto" src="" alt="Muhammad Hasbhi" style="width:100%;height:100%;object-fit:cover">
+          </div>
+          <h2 style="color:#1565c0;font-size:22px;font-weight:900;margin:0 0 6px">Muhammad Hasbhi</h2>
+          <div style="display:inline-block;padding:3px 14px;background:#e3f2fd;border:1.5px solid #90caf9;border-radius:16px;color:#1565c0;font-size:12px;font-weight:700;margin-bottom:12px">Founder & Web Developer</div>
+          <p style="color:#64748b;font-size:13px;line-height:1.7;max-width:420px;margin:0 auto">Passionate web developer yang ingin berbagi ilmu web development. Percaya siapapun bisa jadi web developer!</p>
+        </div>
+        <div class="infogrid">
+          <div class="icard"><div style="font-size:22px;margin-bottom:4px">🌐</div><div style="color:#90a4ae;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:3px;text-transform:uppercase">Platform</div><div style="color:#1565c0;font-size:13px;font-weight:800">Kuy Nge Website!</div></div>
+          <div class="icard"><div style="font-size:22px;margin-bottom:4px">📅</div><div style="color:#90a4ae;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:3px;text-transform:uppercase">Dibuat</div><div style="color:#1565c0;font-size:13px;font-weight:800">April 2025</div></div>
+          <div class="icard"><div style="font-size:22px;margin-bottom:4px">🎯</div><div style="color:#90a4ae;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:3px;text-transform:uppercase">Total Level</div><div style="color:#1565c0;font-size:13px;font-weight:800">60 Level</div></div>
+          <div class="icard"><div style="font-size:22px;margin-bottom:4px">🎓</div><div style="color:#90a4ae;font-size:10px;font-weight:700;letter-spacing:1px;margin-bottom:3px;text-transform:uppercase">Fokus</div><div style="color:#1565c0;font-size:13px;font-weight:800">Web Dev</div></div>
+        </div>
+        <div style="padding:20px;border-radius:14px;background:linear-gradient(135deg,#e3f2fd,#f0f5ff);border:1.5px solid #90caf9">
+          <div style="color:#1565c0;font-weight:800;font-size:14px;margin-bottom:8px">🎯 Misi Kami</div>
+          <p style="color:#455a64;font-size:13px;line-height:1.8;margin:0">Kuy Nge Website hadir untuk memudahkan siapa saja belajar web development — 60 level, materi lengkap, soal latihan, chatbot AI Hasbhi Bot 24/7. <strong style="color:#1565c0">Kuy mulai sekarang! 🚀</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FINAL PROJECT -->
+<div id="pg-final" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:24px">← Kembali</button>
+    <div style="background:#fff;border-radius:22px;padding:30px;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5;margin-bottom:20px">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px">
+        <div style="width:50px;height:50px;border-radius:14px;background:linear-gradient(135deg,#d32f2f,#ef5350);display:flex;align-items:center;justify-content:center;font-size:26px">👑</div>
+        <div><h1 style="color:#1565c0;font-size:22px;font-weight:900;margin:0">Final Project</h1><p style="color:#64748b;margin:0;font-size:13px">Upload website HTML buatanmu dan preview langsung!</p></div>
+      </div>
+      <div style="background:#f0f5ff;border:2px dashed #90caf9;border-radius:14px;padding:36px;text-align:center;cursor:pointer" onclick="document.getElementById('finput').click()">
+        <div style="font-size:42px;margin-bottom:10px">📁</div>
+        <div style="color:#1565c0;font-weight:800;font-size:16px;margin-bottom:4px" id="flabel">Klik untuk upload file HTML</div>
+        <div style="color:#90a4ae;font-size:12px">Format: .html • Max 5MB</div>
+        <input id="finput" type="file" accept=".html,.htm" style="display:none" onchange="handleFile(this)">
+      </div>
+      <div id="fguide" style="background:#e3f2fd;border-radius:12px;padding:18px;margin-top:16px">
+        <div style="color:#1565c0;font-weight:800;margin-bottom:8px">📋 Panduan Final Project</div>
+        <div style="color:#455a64;font-size:13px;line-height:1.8">1. Buat website lengkap (HTML + CSS + JS)<br>2. Ada minimal navbar, konten, dan footer<br>3. Buat responsive di HP<br>4. Save sebagai index.html<br>5. Upload dan lihat preview!</div>
+      </div>
+    </div>
+    <div id="fprev" style="display:none;background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.12);border:1.5px solid #e3eaf5">
+      <div style="padding:12px 18px;background:linear-gradient(135deg,#1565c0,#1976d2);display:flex;align-items:center;gap:10px">
+        <div style="display:flex;gap:5px"><div style="width:11px;height:11px;border-radius:50%;background:#ef5350"></div><div style="width:11px;height:11px;border-radius:50%;background:#ffca28"></div><div style="width:11px;height:11px;border-radius:50%;background:#66bb6a"></div></div>
+        <div style="background:rgba(255,255,255,0.15);border-radius:6px;padding:3px 14px;color:rgba(255,255,255,0.9);font-size:12px;flex:1;text-align:center" id="fprevlabel">preview.html</div>
+        <button onclick="closePreview()" style="background:rgba(255,255,255,0.15);border:none;color:#fff;border-radius:6px;padding:3px 10px;cursor:pointer;font-size:11px;font-family:'Nunito',sans-serif">✕</button>
+      </div>
+      <iframe id="fframe" style="width:100%;height:520px;border:none" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+  </div>
+</div>
+
+<div id="pg-mat-1" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(1)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#e05d44,#e05d44cc);color:#fff;border-color:#e05d44">📝 Mulai Tes Level 1</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#e05d44,#e05d44cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🏗️</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 1 — HTML</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Pengenalan HTML</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">HTML (HyperText Markup Language) adalah bahasa standar untuk membuat halaman web. HTML bukan bahasa pemrograman, melainkan bahasa markup yang mendefinisikan struktur konten.
+
+Struktur Dasar HTML:
+&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Halaman Pertamaku&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Halo Dunia!&lt;/h1&gt;
+    &lt;p&gt;Ini paragraf pertamaku.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+
+• &lt;!DOCTYPE html&gt; — Memberitahu browser ini adalah HTML5
+• &lt;html&gt; — Tag pembuka dokumen HTML
+• &lt;head&gt; — Berisi informasi meta, tidak ditampilkan
+• &lt;body&gt; — Berisi konten yang ditampilkan</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(1)">📝 Mulai Tes Level 1</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-2" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(2)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#e05d44,#e05d44cc);color:#fff;border-color:#e05d44">📝 Mulai Tes Level 2</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#e05d44,#e05d44cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🏗️</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 2 — HTML</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Tag Teks HTML</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Tag teks digunakan untuk mengatur tampilan dan makna teks.
+
+Heading (h1-h6):
+&lt;h1&gt;Heading Terbesar&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h6&gt;Heading Terkecil&lt;/h6&gt;
+
+Teks Dasar:
+&lt;p&gt;Ini adalah paragraf.&lt;/p&gt;
+&lt;strong&gt;Teks tebal (semantik)&lt;/strong&gt;
+&lt;em&gt;Teks miring (semantik)&lt;/em&gt;
+&lt;br&gt; — baris baru
+&lt;hr&gt; — garis horizontal</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(2)">📝 Mulai Tes Level 2</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-3" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(3)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#e05d44,#e05d44cc);color:#fff;border-color:#e05d44">📝 Mulai Tes Level 3</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#e05d44,#e05d44cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🏗️</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 3 — HTML</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Link & Gambar</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Menghubungkan halaman dan menampilkan gambar.
+
+Link (Anchor):
+&lt;a href="https://google.com"&gt;Kunjungi Google&lt;/a&gt;
+&lt;a href="https://google.com" target="_blank"&gt;Buka Tab Baru&lt;/a&gt;
+&lt;a href="halaman2.html"&gt;Halaman Internal&lt;/a&gt;
+
+Gambar:
+&lt;img src="foto.jpg" alt="Deskripsi foto" width="300"&gt;
+
+• href — URL tujuan link
+• target="_blank" — buka di tab baru
+• src — lokasi file gambar
+• alt — teks alternatif (penting untuk aksesibilitas &amp; SEO)</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(3)">📝 Mulai Tes Level 3</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-4" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(4)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#e05d44,#e05d44cc);color:#fff;border-color:#e05d44">📝 Mulai Tes Level 4</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#e05d44,#e05d44cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🏗️</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 4 — HTML</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">List & Table</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Membuat daftar dan tabel data.
+
+Daftar Tidak Berurutan:
+&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+  &lt;li&gt;JavaScript&lt;/li&gt;
+&lt;/ul&gt;
+
+Daftar Berurutan:
+&lt;ol&gt;
+  &lt;li&gt;Belajar HTML&lt;/li&gt;
+  &lt;li&gt;Belajar CSS&lt;/li&gt;
+&lt;/ol&gt;
+
+Tabel:
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Nama&lt;/th&gt;
+    &lt;th&gt;Nilai&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;Hasbhi&lt;/td&gt;
+    &lt;td&gt;100&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(4)">📝 Mulai Tes Level 4</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-5" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(5)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#e05d44,#e05d44cc);color:#fff;border-color:#e05d44">📝 Mulai Tes Level 5</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#e05d44,#e05d44cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🏗️</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 5 — HTML</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Form HTML</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Form digunakan untuk mengumpulkan input dari pengguna.
+
+&lt;form action="/submit" method="POST"&gt;
+  &lt;input type="text" placeholder="Nama"&gt;
+  &lt;input type="email" placeholder="Email"&gt;
+  &lt;input type="password" placeholder="Password"&gt;
+  &lt;input type="number" placeholder="Umur"&gt;
+
+  &lt;select&gt;
+    &lt;option&gt;HTML&lt;/option&gt;
+    &lt;option&gt;CSS&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;textarea placeholder="Pesan..."&gt;&lt;/textarea&gt;
+
+  &lt;button type="submit"&gt;Kirim&lt;/button&gt;
+&lt;/form&gt;
+
+Jenis input: text, email, password, number, checkbox, radio, file, date</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(5)">📝 Mulai Tes Level 5</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-11" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(11)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#1565c0,#1565c0cc);color:#fff;border-color:#1565c0">📝 Mulai Tes Level 11</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#1565c0,#1565c0cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🎨</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 11 — CSS</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">CSS Dasar</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">CSS (Cascading Style Sheets) digunakan untuk mengatur tampilan HTML.
+
+3 Cara Menulis CSS:
+
+1. Inline:
+&lt;p style="color:blue;"&gt;Teks biru&lt;/p&gt;
+
+2. Internal (di &lt;head&gt;):
+&lt;style&gt;
+  p { color: blue; }
+&lt;/style&gt;
+
+3. External (file .css):
+&lt;link rel="stylesheet" href="style.css"&gt;
+
+Contoh Properti:
+p {
+  color: #1565c0;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif;
+  background-color: #f0f5ff;
+  border: 1px solid #90caf9;
+}</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(11)">📝 Mulai Tes Level 11</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-12" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(12)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#1565c0,#1565c0cc);color:#fff;border-color:#1565c0">📝 Mulai Tes Level 12</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#1565c0,#1565c0cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🎨</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 12 — CSS</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Box Model</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Setiap elemen HTML adalah sebuah kotak (box).
+
++---------------------------+
+|         MARGIN            |
+|  +---------------------+  |
+|  |      BORDER         |  |
+|  |  +---------------+  |  |
+|  |  |    PADDING    |  |  |
+|  |  |  +---------+  |  |  |
+|  |  |  | CONTENT |  |  |  |
+|  |  |  +---------+  |  |  |
+|  |  +---------------+  |  |
+|  +---------------------+  |
++---------------------------+
+
+div {
+  margin: 20px;       /* Jarak luar */
+  border: 2px solid blue;
+  padding: 16px;      /* Jarak dalam */
+  width: 300px;
+  box-sizing: border-box; /* Ukuran include padding */
+}</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(12)">📝 Mulai Tes Level 12</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-13" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(13)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#1565c0,#1565c0cc);color:#fff;border-color:#1565c0">📝 Mulai Tes Level 13</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#1565c0,#1565c0cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🎨</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 13 — CSS</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Positioning</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Position mengatur posisi elemen di halaman.
+
+.static { position: static; }   /* Default */
+.relative {
+  position: relative;
+  top: 10px; left: 20px;  /* Geser dari posisi asli */
+}
+.absolute {
+  position: absolute;
+  top: 0; right: 0;  /* Relatif ke parent positioned */
+}
+.fixed {
+  position: fixed;
+  bottom: 20px; right: 20px; /* Tetap di layar saat scroll */
+}
+.sticky {
+  position: sticky;
+  top: 0; /* Nempel saat scroll sampai titik itu */
+}
+
+z-index: mengatur lapisan elemen (lebih tinggi = di atas)</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(13)">📝 Mulai Tes Level 13</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-14" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(14)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#1565c0,#1565c0cc);color:#fff;border-color:#1565c0">📝 Mulai Tes Level 14</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#1565c0,#1565c0cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🎨</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 14 — CSS</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Flexbox</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Flexbox untuk layout satu dimensi (baris atau kolom).
+
+.container {
+  display: flex;
+  flex-direction: row;        /* row | column */
+  justify-content: center;    /* horizontal alignment */
+  align-items: center;        /* vertical alignment */
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+justify-content:
+  flex-start | flex-end | center | space-between | space-around
+
+align-items:
+  flex-start | flex-end | center | stretch
+
+.item {
+  flex: 1;         /* Ambil ruang yang tersedia */
+  flex-grow: 2;    /* Tumbuh 2x lebih besar */
+}</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(14)">📝 Mulai Tes Level 14</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-15" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(15)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#1565c0,#1565c0cc);color:#fff;border-color:#1565c0">📝 Mulai Tes Level 15</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#1565c0,#1565c0cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🎨</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 15 — CSS</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">CSS Grid</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Grid untuk layout dua dimensi (baris + kolom).
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: auto;
+  gap: 20px;
+}
+
+/* Shorthand */
+grid-template-columns: repeat(3, 1fr);
+grid-template-columns: 200px auto 200px;
+
+/* Item spanning */
+.item {
+  grid-column: 1 / 3;   /* Dari kolom 1 sampai 3 */
+  grid-row: 1 / 2;
+}
+
+/* Named areas */
+grid-template-areas:
+  "header header"
+  "sidebar main"
+  "footer footer";</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(15)">📝 Mulai Tes Level 15</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-21" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(21)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#f9a825,#f9a825cc);color:#fff;border-color:#f9a825">📝 Mulai Tes Level 21</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#f9a825,#f9a825cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">⚡</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 21 — JS</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">JavaScript Dasar</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">JavaScript membuat website interaktif dan dinamis.
+
+Variabel:
+var nama = "Hasbhi";    // function-scoped (lama)
+let umur = 17;          // block-scoped (modern)
+const PI = 3.14;        // tidak bisa diubah
+
+Tipe Data:
+let str = "Hello";          // String
+let num = 42;               // Number
+let bool = true;            // Boolean
+let arr = [1, 2, 3];       // Array
+let obj = {nama: "Hasbhi"}; // Object
+let kosong = null;          // Null
+let belumAda;               // Undefined
+
+Output:
+console.log("Halo!");       // Di console browser
+alert("Pesan!");            // Popup</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(21)">📝 Mulai Tes Level 21</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-22" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(22)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#f9a825,#f9a825cc);color:#fff;border-color:#f9a825">📝 Mulai Tes Level 22</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#f9a825,#f9a825cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">⚡</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 22 — JS</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Control Flow</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Mengontrol alur eksekusi program.
+
+If-Else:
+let nilai = 80;
+if (nilai &gt;= 90) {
+  console.log("A");
+} else if (nilai &gt;= 80) {
+  console.log("B");
+} else {
+  console.log("C");
+}
+
+Switch:
+switch (hari) {
+  case "Senin": console.log("Awal minggu"); break;
+  case "Jumat": console.log("Hampir weekend"); break;
+  default: console.log("Hari biasa");
+}
+
+Ternary (singkat):
+let status = umur &gt;= 17 ? "Dewasa" : "Anak-anak";
+
+Logical Operators:
+&amp;&amp; (AND), || (OR), ! (NOT)</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(22)">📝 Mulai Tes Level 22</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-23" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(23)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#f9a825,#f9a825cc);color:#fff;border-color:#f9a825">📝 Mulai Tes Level 23</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#f9a825,#f9a825cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">⚡</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 23 — JS</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Loop</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Loop untuk mengulangi kode.
+
+For Loop:
+for (let i = 0; i &lt; 5; i++) {
+  console.log(i); // 0,1,2,3,4
+}
+
+While Loop:
+let i = 0;
+while (i &lt; 5) {
+  console.log(i);
+  i++;
+}
+
+forEach (Array):
+const buah = ["apel", "mangga", "jeruk"];
+buah.forEach(function(item) {
+  console.log(item);
+});
+
+// Arrow function
+buah.forEach(item =&gt; console.log(item));
+
+for...of:
+for (let item of buah) {
+  console.log(item);
+}</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(23)">📝 Mulai Tes Level 23</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-24" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(24)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#f9a825,#f9a825cc);color:#fff;border-color:#f9a825">📝 Mulai Tes Level 24</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#f9a825,#f9a825cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">⚡</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 24 — JS</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Fungsi</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Fungsi adalah blok kode yang bisa dipanggil berulang kali.
+
+Deklarasi Fungsi:
+function sapa(nama) {
+  return "Halo, " + nama + "!";
+}
+console.log(sapa("Hasbhi")); // Halo, Hasbhi!
+
+Function Expression:
+const kali = function(a, b) {
+  return a * b;
+};
+
+Arrow Function:
+const tambah = (a, b) =&gt; a + b;
+const kuadrat = n =&gt; n * n;
+
+Default Parameter:
+function greet(nama = "Teman") {
+  return "Halo " + nama;
+}
+greet();        // Halo Teman
+greet("Hasbhi"); // Halo Hasbhi</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(24)">📝 Mulai Tes Level 24</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-25" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(25)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#f9a825,#f9a825cc);color:#fff;border-color:#f9a825">📝 Mulai Tes Level 25</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#f9a825,#f9a825cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">⚡</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 25 — JS</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">DOM Manipulation</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">DOM (Document Object Model) = representasi HTML sebagai objek JS.
+
+Mengambil Elemen:
+const el = document.getElementById("myId");
+const el = document.querySelector(".myClass");
+const els = document.querySelectorAll("p");
+
+Mengubah Konten:
+el.textContent = "Teks baru";
+el.innerHTML = "&lt;strong&gt;Bold&lt;/strong&gt;";
+
+Mengubah Style:
+el.style.color = "blue";
+el.style.fontSize = "20px";
+
+Mengubah Class:
+el.classList.add("active");
+el.classList.remove("active");
+el.classList.toggle("active");
+
+Membuat Elemen Baru:
+const div = document.createElement("div");
+div.textContent = "Elemen baru";
+document.body.appendChild(div);</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(25)">📝 Mulai Tes Level 25</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-36" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(36)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#0288d1,#0288d1cc);color:#fff;border-color:#0288d1">📝 Mulai Tes Level 36</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#0288d1,#0288d1cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">⚛️</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 36 — REACT</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Intro React</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">React adalah library JavaScript untuk membangun UI yang interaktif.
+
+Kenapa React?
+• Virtual DOM — update yang efisien
+• Component-based — kode reusable
+• Declarative — UI mengikuti state
+• Ekosistem besar — banyak library pendukung
+
+Setup:
+npm create vite@latest my-app -- --template react
+cd my-app
+npm install
+npm run dev
+
+Struktur Project:
+my-app/
+  src/
+    App.jsx      ← komponen utama
+    main.jsx     ← entry point
+  index.html
+
+JSX (JavaScript + XML):
+const elemen = &lt;h1&gt;Halo {nama}!&lt;/h1&gt;;
+// JSX dikompilasi ke React.createElement()</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(36)">📝 Mulai Tes Level 36</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-37" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(37)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#0288d1,#0288d1cc);color:#fff;border-color:#0288d1">📝 Mulai Tes Level 37</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#0288d1,#0288d1cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">⚛️</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 37 — REACT</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Components & Props</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Komponen = fungsi yang mengembalikan JSX.
+
+Membuat Komponen:
+function Kartu({ judul, isi }) {
+  return (
+    &lt;div className="kartu"&gt;
+      &lt;h2&gt;{judul}&lt;/h2&gt;
+      &lt;p&gt;{isi}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+Menggunakan Komponen:
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;Kartu judul="HTML" isi="Belajar struktur web" /&gt;
+      &lt;Kartu judul="CSS" isi="Belajar styling web" /&gt;
+    &lt;/div&gt;
+  );
+}
+
+Props Rules:
+• Props bersifat read-only (immutable)
+• Bisa berupa string, number, array, object, function
+• Default props: function Btn({ warna = "biru" })</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(37)">📝 Mulai Tes Level 37</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-38" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(38)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#0288d1,#0288d1cc);color:#fff;border-color:#0288d1">📝 Mulai Tes Level 38</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#0288d1,#0288d1cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">⚛️</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 38 — REACT</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">useState</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">useState untuk menyimpan dan update data dalam komponen.
+
+import { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Hitungan: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;+&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(count - 1)}&gt;-&lt;/button&gt;
+      &lt;button onClick={() =&gt; setCount(0)}&gt;Reset&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+Penting:
+• JANGAN ubah state langsung: count = 5 ❌
+• Selalu pakai setter: setCount(5) ✅
+• State update = re-render komponen
+• State dengan object: setUser({...user, nama: "Baru"})</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(38)">📝 Mulai Tes Level 38</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-39" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(39)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#0288d1,#0288d1cc);color:#fff;border-color:#0288d1">📝 Mulai Tes Level 39</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#0288d1,#0288d1cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">⚛️</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 39 — REACT</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">useEffect</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">useEffect untuk side effects (fetch data, subscribe, timer dll).
+
+import { useEffect, useState } from "react";
+
+function Component() {
+  const [data, setData] = useState(null);
+
+  // Jalankan setiap render
+  useEffect(() =&gt; { console.log("render!"); });
+
+  // Jalankan sekali saat mount
+  useEffect(() =&gt; {
+    fetch("/api/data")
+      .then(res =&gt; res.json())
+      .then(d =&gt; setData(d));
+  }, []);
+
+  // Jalankan saat 'id' berubah
+  useEffect(() =&gt; {
+    fetchData(id);
+  }, [id]);
+
+  // Cleanup (saat unmount)
+  useEffect(() =&gt; {
+    const timer = setInterval(() =&gt; {}, 1000);
+    return () =&gt; clearInterval(timer); // cleanup
+  }, []);
+}</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(39)">📝 Mulai Tes Level 39</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-40" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(40)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#0288d1,#0288d1cc);color:#fff;border-color:#0288d1">📝 Mulai Tes Level 40</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#0288d1,#0288d1cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">⚛️</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 40 — REACT</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">React Router</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">React Router untuk navigasi antar halaman.
+
+npm install react-router-dom
+
+Setup:
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+
+function App() {
+  return (
+    &lt;BrowserRouter&gt;
+      &lt;nav&gt;
+        &lt;Link to="/"&gt;Home&lt;/Link&gt;
+        &lt;Link to="/about"&gt;About&lt;/Link&gt;
+      &lt;/nav&gt;
+      &lt;Routes&gt;
+        &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+        &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
+        &lt;Route path="/user/:id" element={&lt;User /&gt;} /&gt;
+      &lt;/Routes&gt;
+    &lt;/BrowserRouter&gt;
+  );
+}
+
+// Ambil params
+import { useParams, useNavigate } from "react-router-dom";
+const { id } = useParams();
+const navigate = useNavigate();
+navigate("/home"); // pindah halaman</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(40)">📝 Mulai Tes Level 40</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-46" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(46)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#2e7d32,#2e7d32cc);color:#fff;border-color:#2e7d32">📝 Mulai Tes Level 46</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#2e7d32,#2e7d32cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🔧</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 46 — BACKEND</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Node.js Dasar</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Node.js = runtime JavaScript di luar browser (di server).
+
+Kenapa Node.js?
+• JavaScript di server &amp; client
+• Non-blocking I/O (cepat untuk I/O banyak)
+• NPM — package manager terbesar
+• Event-driven architecture
+
+Hello World:
+// app.js
+const http = require("http");
+
+const server = http.createServer((req, res) =&gt; {
+  res.writeHead(200, {"Content-Type": "text/plain"});
+  res.end("Halo dari Node.js!");
+});
+
+server.listen(3000, () =&gt; {
+  console.log("Server jalan di port 3000");
+});
+
+NPM Commands:
+npm init -y          // buat package.json
+npm install express  // install package
+npm run dev          // jalankan script dev</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(46)">📝 Mulai Tes Level 46</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-47" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(47)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#2e7d32,#2e7d32cc);color:#fff;border-color:#2e7d32">📝 Mulai Tes Level 47</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#2e7d32,#2e7d32cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🔧</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 47 — BACKEND</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Express.js</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Express.js = framework minimalis untuk Node.js.
+
+Setup:
+npm install express
+
+Basic Server:
+const express = require("express");
+const app = express();
+app.use(express.json()); // parse JSON body
+
+// Routes
+app.get("/", (req, res) =&gt; {
+  res.send("Halo!");
+});
+
+app.get("/users/:id", (req, res) =&gt; {
+  const id = req.params.id;
+  res.json({ id, nama: "Hasbhi" });
+});
+
+app.post("/users", (req, res) =&gt; {
+  const data = req.body;
+  res.status(201).json({ pesan: "Berhasil", data });
+});
+
+app.listen(3000, () =&gt; console.log("Port 3000"));
+
+Middleware:
+app.use((req, res, next) =&gt; {
+  console.log(req.method, req.url);
+  next(); // lanjut ke handler berikutnya
+});</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(47)">📝 Mulai Tes Level 47</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-48" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(48)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#2e7d32,#2e7d32cc);color:#fff;border-color:#2e7d32">📝 Mulai Tes Level 48</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#2e7d32,#2e7d32cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🔧</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 48 — BACKEND</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">REST API</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">REST API = cara komunikasi client-server via HTTP.
+
+HTTP Methods:
+GET    /users        → ambil semua user
+GET    /users/1      → ambil user id=1
+POST   /users        → buat user baru
+PUT    /users/1      → update user id=1 (seluruhnya)
+PATCH  /users/1      → update sebagian
+DELETE /users/1      → hapus user id=1
+
+Status Codes:
+200 OK              → berhasil
+201 Created         → berhasil dibuat
+400 Bad Request     → request salah
+401 Unauthorized    → perlu login
+403 Forbidden       → tidak punya akses
+404 Not Found       → tidak ditemukan
+500 Internal Error  → error server
+
+Contoh Response JSON:
+{
+  "status": "success",
+  "data": { "id": 1, "nama": "Hasbhi" },
+  "message": "User ditemukan"
+}</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(48)">📝 Mulai Tes Level 48</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-49" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(49)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#2e7d32,#2e7d32cc);color:#fff;border-color:#2e7d32">📝 Mulai Tes Level 49</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#2e7d32,#2e7d32cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🔧</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 49 — BACKEND</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Database SQL</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">SQL = Structured Query Language untuk database relasional.
+
+Perintah Dasar:
+-- Buat tabel
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nama VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  dibuat TIMESTAMP DEFAULT NOW()
+);
+
+-- Tambah data
+INSERT INTO users (nama, email) VALUES ("Hasbhi", "hasbhi@email.com");
+
+-- Ambil data
+SELECT * FROM users;
+SELECT nama, email FROM users WHERE id = 1;
+SELECT * FROM users ORDER BY nama ASC LIMIT 10;
+
+-- Update data
+UPDATE users SET nama = "Muhammad Hasbhi" WHERE id = 1;
+
+-- Hapus data
+DELETE FROM users WHERE id = 1;
+
+-- Join tabel
+SELECT users.nama, orders.total
+FROM users
+JOIN orders ON users.id = orders.user_id;</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(49)">📝 Mulai Tes Level 49</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-50" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(50)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#2e7d32,#2e7d32cc);color:#fff;border-color:#2e7d32">📝 Mulai Tes Level 50</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#2e7d32,#2e7d32cc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🔧</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 50 — BACKEND</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Authentication</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Autentikasi = memverifikasi identitas pengguna.
+
+JWT (JSON Web Token):
+npm install jsonwebtoken bcryptjs
+
+// Hash password saat register
+const bcrypt = require("bcryptjs");
+const hash = await bcrypt.hash(password, 10);
+
+// Verifikasi saat login
+const valid = await bcrypt.compare(inputPassword, hash);
+
+// Buat JWT token
+const jwt = require("jsonwebtoken");
+const token = jwt.sign(
+  { id: user.id, email: user.email },
+  process.env.JWT_SECRET,
+  { expiresIn: "7d" }
+);
+
+// Middleware verifikasi token
+function authMiddleware(req, res, next) {
+  const token = req.headers.authorization?.split(" ")[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch {
+    res.status(401).json({ error: "Token tidak valid" });
+  }
+}</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(50)">📝 Mulai Tes Level 50</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-53" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(53)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);color:#fff;border-color:#6a1b9a">📝 Mulai Tes Level 53</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🚀</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 53 — ADVANCED</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">TypeScript</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">TypeScript = JavaScript + Type System. Dikembangkan Microsoft.
+
+Instalasi:
+npm install -D typescript
+npx tsc --init
+
+Type Annotations:
+let nama: string = "Hasbhi";
+let umur: number = 17;
+let aktif: boolean = true;
+let nilai: number[] = [80, 90, 100];
+
+Interface:
+interface User {
+  id: number;
+  nama: string;
+  email: string;
+  umur?: number; // optional
+}
+
+const user: User = { id: 1, nama: "Hasbhi", email: "h@h.com" };
+
+Function Types:
+function tambah(a: number, b: number): number {
+  return a + b;
+}
+
+Generic:
+function getFirst&lt;T&gt;(arr: T[]): T {
+  return arr[0];
+}</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(53)">📝 Mulai Tes Level 53</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-54" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(54)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);color:#fff;border-color:#6a1b9a">📝 Mulai Tes Level 54</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🚀</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 54 — ADVANCED</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Git & GitHub</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Git = version control system. GitHub = platform hosting kode.
+
+Setup Awal:
+git config --global user.name "Hasbhi"
+git config --global user.email "hasbhi@email.com"
+
+Workflow Dasar:
+git init                    // inisialisasi repo
+git add .                   // staging semua perubahan
+git add file.html           // staging file tertentu
+git commit -m "Pesan"       // simpan perubahan
+git status                  // cek status
+git log --oneline           // lihat history
+
+Branching:
+git branch fitur-baru       // buat branch
+git checkout fitur-baru     // pindah branch
+git checkout -b fitur-baru  // buat + pindah
+git merge fitur-baru        // gabungkan ke main
+git branch -d fitur-baru    // hapus branch
+
+GitHub:
+git remote add origin https://github.com/user/repo.git
+git push -u origin main     // push pertama kali
+git push                    // push berikutnya
+git pull                    // ambil update terbaru</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(54)">📝 Mulai Tes Level 54</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-55" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(55)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);color:#fff;border-color:#6a1b9a">📝 Mulai Tes Level 55</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🚀</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 55 — ADVANCED</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Deploy Full Stack</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Deploy = mempublikasikan website ke internet.
+
+Frontend (Vercel):
+1. Push kode ke GitHub
+2. Login vercel.com
+3. Import repository
+4. Klik Deploy!
+5. Dapat URL: nama-project.vercel.app
+
+Frontend (Netlify):
+1. Drag &amp; drop folder build ke netlify.com
+   ATAU connect GitHub repo
+2. Set build command: npm run build
+3. Set publish dir: dist atau build
+
+Backend (Railway):
+1. Login railway.app
+2. New Project → Deploy from GitHub
+3. Tambah environment variables
+4. Auto-deploy setiap push ke main
+
+Environment Variables:
+// Jangan expose secret di kode!
+// Simpan di .env file (jangan di-commit)
+DATABASE_URL=mongodb://...
+JWT_SECRET=rahasia123
+PORT=3000
+
+// Di Node.js
+require("dotenv").config();
+const secret = process.env.JWT_SECRET;</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(55)">📝 Mulai Tes Level 55</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-56" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(56)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);color:#fff;border-color:#6a1b9a">📝 Mulai Tes Level 56</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🚀</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 56 — ADVANCED</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Web Security</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Keamanan web sangat penting untuk melindungi data pengguna.
+
+XSS (Cross-Site Scripting):
+// Bahaya - render HTML langsung dari user
+el.innerHTML = userInput; ❌
+
+// Aman - gunakan textContent
+el.textContent = userInput; ✅
+
+// Di Express - gunakan helmet
+npm install helmet
+app.use(helmet());
+
+CSRF (Cross-Site Request Forgery):
+// Gunakan CSRF token
+// Validasi origin header
+
+SQL Injection:
+// Bahaya
+query = "SELECT * FROM users WHERE id = " + id; ❌
+
+// Aman - gunakan parameterized query
+db.query("SELECT * FROM users WHERE id = ?", [id]); ✅
+
+HTTPS:
+• Selalu gunakan HTTPS di production
+• Vercel/Netlify otomatis HTTPS
+• SSL certificate gratis via Let's Encrypt
+
+CORS:
+const cors = require("cors");
+app.use(cors({ origin: "https://mysite.com" }));</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(56)">📝 Mulai Tes Level 56</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-57" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(57)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);color:#fff;border-color:#6a1b9a">📝 Mulai Tes Level 57</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#6a1b9a,#6a1b9acc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">🚀</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 57 — ADVANCED</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Performance</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Optimasi performa website agar loading cepat.
+
+Core Web Vitals:
+• LCP (Largest Contentful Paint) &lt; 2.5s
+• FID (First Input Delay) &lt; 100ms
+• CLS (Cumulative Layout Shift) &lt; 0.1
+
+Optimasi Gambar:
+• Gunakan format WebP/AVIF
+• Compress gambar (TinyPNG, Squoosh)
+• Lazy loading: &lt;img loading="lazy"&gt;
+• Ukuran yang tepat (jangan 4K untuk thumbnail)
+
+JavaScript:
+• Minify &amp; bundle (Vite/Webpack otomatis)
+• Code splitting (dynamic import)
+• Tree shaking (hapus kode tidak terpakai)
+
+CSS:
+• Minify CSS
+• Hapus CSS tidak terpakai (PurgeCSS)
+• Critical CSS inline
+
+Caching:
+• Browser cache (Cache-Control header)
+• CDN untuk asset statis
+• Service Worker (PWA)
+
+Tools:
+• Lighthouse (Chrome DevTools)
+• PageSpeed Insights
+• WebPageTest</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(57)">📝 Mulai Tes Level 57</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="pg-mat-60" class="page">
+  <div class="pgwrap" style="max-width:860px">
+    <button class="btns" onclick="goHome()" style="margin-bottom:8px">← Beranda</button>
+    <button class="btns" onclick="openQuiz(60)" style="margin-bottom:24px;margin-left:8px;background:linear-gradient(135deg,#d32f2f,#d32f2fcc);color:#fff;border-color:#d32f2f">📝 Mulai Tes Level 60</button>
+    <div style="background:#fff;border-radius:22px;overflow:hidden;box-shadow:0 8px 32px rgba(21,101,192,0.1);border:1.5px solid #e3eaf5">
+      <div style="background:linear-gradient(135deg,#d32f2f,#d32f2fcc);padding:28px 32px;display:flex;align-items:center;gap:16px">
+        <div style="width:52px;height:52px;border-radius:14px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:28px">👑</div>
+        <div>
+          <div style="color:rgba(255,255,255,0.8);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase">LEVEL 60 — FINAL</div>
+          <h1 style="color:#fff;font-size:22px;font-weight:900;margin:0">Final Project</h1>
+        </div>
+      </div>
+      <div style="padding:28px 32px">
+        <pre style="font-family:'Nunito',monospace;font-size:13.5px;line-height:1.85;color:#1e293b;white-space:pre-wrap;word-break:break-word;background:#f8faff;padding:24px;border-radius:14px;border:1.5px solid #e3eaf5">Selamat! Kamu sudah sampai di tahap terakhir! 🎉
+
+Untuk Final Project, kamu diminta membuat sebuah website lengkap dari nol menggunakan semua ilmu yang sudah dipelajari.
+
+Persyaratan Minimum:
+✅ Struktur HTML yang semantic dan valid
+✅ Styling CSS yang rapi dan responsive
+✅ JavaScript untuk interaktivitas
+✅ Minimal 3 halaman atau section
+✅ Navbar dan footer
+✅ Mobile-friendly (responsive)
+
+Ide Project:
+🌐 Portfolio pribadi
+🛒 Landing page produk/toko
+📰 Blog sederhana
+🎮 Mini game HTML
+📊 Dashboard data
+🍽️ Website restoran
+
+Tips:
+• Mulai dari wireframe/sketsa dulu
+• Gunakan Figma untuk desain (gratis)
+• Commit ke GitHub secara rutin
+• Deploy ke Vercel/Netlify setelah selesai
+
+Setelah selesai coding, upload file HTML kamu di halaman Final Project untuk melihat preview langsung!</pre>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btnp" onclick="openQuiz(60)">📝 Mulai Tes Level 60</button>
+          <button class="btns" onclick="goHome()">← Kembali ke Level</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- QUIZ OVERLAY -->
+<div class="ov" id="qov">
+  <div class="modal">
+    <div class="mhd">
+      <div>
+        <div style="color:rgba(255,255,255,0.8);font-size:11px;font-weight:700" id="qlvllabel">LEVEL 1</div>
+        <div style="color:#fff;font-weight:800;font-size:15px" id="qphaselabel">Soal 1/15</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:16px;color:#fff;font-weight:800;font-size:13px" id="qtimer">⏱ 60:00</div>
+      <button onclick="closeQuiz()" style="background:rgba(255,255,255,0.2);border:none;color:#fff;width:28px;height:28px;border-radius:50%;cursor:pointer;font-size:14px">✕</button>
+    </div>
+    <div class="pb"><div class="pf" id="qprog" style="width:0%"></div></div>
+    <div class="mbd" id="qbody"></div>
+  </div>
+</div>
+
+<!-- CHATBOT -->
+<button class="chatbtn" id="ctoggle" onclick="toggleChat()">🤖</button>
+<div id="chatbox">
+  <div class="chd">
+    <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px">🤖</div>
+    <div><div style="color:#fff;font-weight:800;font-size:14px">Hasbhi Bot</div><div style="color:rgba(255,255,255,0.8);font-size:11px">Asisten Web Dev AI</div></div>
+    <button onclick="toggleChat()" style="margin-left:auto;background:rgba(255,255,255,0.2);border:none;color:#fff;width:26px;height:26px;border-radius:50%;cursor:pointer;font-size:13px">✕</button>
+  </div>
+  <div class="cms" id="cms">
+    <div class="cm b">Halo! 👋 Saya Hasbhi Bot! Tanya apa aja seputar web development — HTML, CSS, JS, React, dll. Gas! 🚀</div>
+  </div>
+  <div class="cinp">
+    <input type="text" id="cinput" placeholder="Tanya web dev..." onkeydown="if(event.key==='Enter')sendChat()">
+    <button onclick="sendChat()">➤</button>
+  </div>
+</div>
+
+<script>
+var LOGO_SRC="data:image/png;base64,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";
+var PHOTO_SRC="data:image/jpeg;base64,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";
+var MATERI_PAGE = {
+  1: 'mat-1',
+  2: 'mat-2',
+  3: 'mat-3',
+  4: 'mat-4',
+  5: 'mat-5',
+  11: 'mat-11',
+  12: 'mat-12',
+  13: 'mat-13',
+  14: 'mat-14',
+  15: 'mat-15',
+  21: 'mat-21',
+  22: 'mat-22',
+  23: 'mat-23',
+  24: 'mat-24',
+  25: 'mat-25',
+  36: 'mat-36',
+  37: 'mat-37',
+  38: 'mat-38',
+  39: 'mat-39',
+  40: 'mat-40',
+  46: 'mat-46',
+  47: 'mat-47',
+  48: 'mat-48',
+  49: 'mat-49',
+  50: 'mat-50',
+  53: 'mat-53',
+  54: 'mat-54',
+  55: 'mat-55',
+  56: 'mat-56',
+  57: 'mat-57',
+  60: 'mat-60',
+};
+
+document.getElementById('navlogo').src=LOGO_SRC;
+document.getElementById('footlogo').src=LOGO_SRC;
+document.getElementById('aboutlogo').src=LOGO_SRC;
+document.getElementById('founderphoto').src=PHOTO_SRC;
+
+var CATS={html:{color:"#e05d44",icon:"🏗️"},css:{color:"#1565c0",icon:"🎨"},js:{color:"#f9a825",icon:"⚡"},react:{color:"#0288d1",icon:"⚛️"},backend:{color:"#2e7d32",icon:"🔧"},advanced:{color:"#6a1b9a",icon:"🚀"},final:{color:"#d32f2f",icon:"👑"}};
+var LEVELS=[
+  {id:1,cat:"html",title:"Pengenalan HTML",desc:"Struktur dasar HTML.",xp:100,topics:["Struktur HTML","Tag dasar","Atribut"]},
+  {id:2,cat:"html",title:"Tag Teks HTML",desc:"Heading, paragraf, bold.",xp:120,topics:["h1-h6","p br hr","strong em"]},
+  {id:3,cat:"html",title:"Link & Gambar",desc:"Link dan gambar di HTML.",xp:130,topics:["a href","target blank","img alt"]},
+  {id:4,cat:"html",title:"List & Table",desc:"Daftar dan tabel.",xp:140,topics:["ul ol li","table tr td","colspan"]},
+  {id:5,cat:"html",title:"Form HTML",desc:"Input dan form.",xp:150,topics:["form action","input types","select"]},
+  {id:6,cat:"html",title:"Semantic HTML",desc:"HTML yang bermakna.",xp:160,topics:["header footer","nav main","article"]},
+  {id:7,cat:"html",title:"HTML5 Media",desc:"Audio, video, iframe.",xp:170,topics:["video audio","source","iframe"]},
+  {id:8,cat:"html",title:"HTML Metadata",desc:"Meta tag dan SEO.",xp:180,topics:["meta charset","viewport","og tags"]},
+  {id:9,cat:"html",title:"Accessibility",desc:"Web untuk semua orang.",xp:190,topics:["ARIA labels","role attr","Tab index"]},
+  {id:10,cat:"html",title:"HTML Best Practices",desc:"Pola HTML yang benar.",xp:200,topics:["Indentation","Validasi","Folder"]},
+  {id:11,cat:"css",title:"CSS Dasar",desc:"Selektor dan properti CSS.",xp:200,topics:["Selector","Warna font","Inline vs External"]},
+  {id:12,cat:"css",title:"Box Model",desc:"Margin, padding, border.",xp:220,topics:["Content","Padding","Margin"]},
+  {id:13,cat:"css",title:"Positioning",desc:"Posisi elemen CSS.",xp:240,topics:["relative","absolute","z-index"]},
+  {id:14,cat:"css",title:"Flexbox",desc:"Layout satu dimensi.",xp:260,topics:["display flex","justify","align-items"]},
+  {id:15,cat:"css",title:"CSS Grid",desc:"Layout dua dimensi.",xp:280,topics:["grid-template","gap","grid-area"]},
+  {id:16,cat:"css",title:"Responsive Design",desc:"Media query adaptif.",xp:300,topics:["@media","Breakpoints","Mobile first"]},
+  {id:17,cat:"css",title:"Animasi CSS",desc:"Transisi dan keyframe.",xp:320,topics:["transition","animation","@keyframes"]},
+  {id:18,cat:"css",title:"CSS Variables",desc:"Custom properties.",xp:340,topics:["--variable","var()","Dark mode"]},
+  {id:19,cat:"css",title:"Advanced Selectors",desc:"Pseudo-class & element.",xp:360,topics:[":hover :focus","::before","nth-child"]},
+  {id:20,cat:"css",title:"CSS Framework",desc:"Tailwind & Bootstrap.",xp:380,topics:["Utility-first","Tailwind","Bootstrap"]},
+  {id:21,cat:"js",title:"JavaScript Dasar",desc:"Variabel dan tipe data.",xp:380,topics:["var let const","String Number","typeof"]},
+  {id:22,cat:"js",title:"Control Flow",desc:"If-else dan switch.",xp:400,topics:["if else","switch","Ternary"]},
+  {id:23,cat:"js",title:"Loop",desc:"For dan while.",xp:420,topics:["for loop","while","forEach"]},
+  {id:24,cat:"js",title:"Fungsi",desc:"Deklarasi dan arrow.",xp:440,topics:["function","Arrow fn","Default param"]},
+  {id:25,cat:"js",title:"Array",desc:"Manipulasi array.",xp:460,topics:["push pop","map filter","spread"]},
+  {id:26,cat:"js",title:"Object",desc:"Properti dan method.",xp:480,topics:["Object literal","Destructuring","Methods"]},
+  {id:27,cat:"js",title:"DOM Manipulation",desc:"Akses elemen HTML.",xp:500,topics:["getElementById","querySelector","innerHTML"]},
+  {id:28,cat:"js",title:"Event Handling",desc:"Click dan keyboard.",xp:520,topics:["addEventListener","Event obj","Bubbling"]},
+  {id:29,cat:"js",title:"ES6+ Modern JS",desc:"Fitur JS modern.",xp:540,topics:["Template literals","Spread","Optional chain"]},
+  {id:30,cat:"js",title:"Async JS",desc:"Promise dan async/await.",xp:560,topics:["Promise","then catch","async await"]},
+  {id:31,cat:"js",title:"Fetch API",desc:"Ambil data dari API.",xp:580,topics:["fetch()","Response.json()","Error"]},
+  {id:32,cat:"js",title:"Local Storage",desc:"Simpan data browser.",xp:600,topics:["setItem","getItem","JSON"]},
+  {id:33,cat:"js",title:"Error Handling",desc:"Try-catch debugging.",xp:620,topics:["try catch","throw","console"]},
+  {id:34,cat:"js",title:"Module JS",desc:"Import dan export.",xp:640,topics:["export","import","dynamic"]},
+  {id:35,cat:"js",title:"OOP JavaScript",desc:"Class dan inheritance.",xp:660,topics:["class","extends","getter setter"]},
+  {id:36,cat:"react",title:"Intro React",desc:"React dan JSX.",xp:660,topics:["Virtual DOM","JSX","Setup"]},
+  {id:37,cat:"react",title:"Components & Props",desc:"Components dan props.",xp:680,topics:["Component","Props","Children"]},
+  {id:38,cat:"react",title:"useState",desc:"State management.",xp:700,topics:["useState","Update","Immutability"]},
+  {id:39,cat:"react",title:"useEffect",desc:"Side effects.",xp:720,topics:["useEffect","Dependency","Cleanup"]},
+  {id:40,cat:"react",title:"Event di React",desc:"Event handling JSX.",xp:740,topics:["onClick","onChange","Submit"]},
+  {id:41,cat:"react",title:"Conditional Render",desc:"Render kondisional.",xp:760,topics:["Ternary","&& operator","Early return"]},
+  {id:42,cat:"react",title:"List & Key",desc:"Render array.",xp:780,topics:["map()","key prop","Filter"]},
+  {id:43,cat:"react",title:"React Router",desc:"Navigasi halaman.",xp:800,topics:["BrowserRouter","Route","useNavigate"]},
+  {id:44,cat:"react",title:"Context API",desc:"State global.",xp:820,topics:["createContext","useContext","Provider"]},
+  {id:45,cat:"react",title:"Custom Hooks",desc:"Buat hooks sendiri.",xp:840,topics:["useFetch","useStorage","useDebounce"]},
+  {id:46,cat:"backend",title:"Node.js Dasar",desc:"Runtime JS server.",xp:840,topics:["Node.js","npm","require"]},
+  {id:47,cat:"backend",title:"Express.js",desc:"Framework Node.js.",xp:860,topics:["Express","Route","Middleware"]},
+  {id:48,cat:"backend",title:"REST API",desc:"API RESTful.",xp:880,topics:["GET POST DELETE","Status","JSON"]},
+  {id:49,cat:"backend",title:"Database SQL",desc:"MySQL dan query.",xp:900,topics:["SELECT","INSERT","JOIN"]},
+  {id:50,cat:"backend",title:"MongoDB",desc:"Database NoSQL.",xp:920,topics:["Collections","CRUD","Mongoose"]},
+  {id:51,cat:"backend",title:"Authentication",desc:"Login dan JWT.",xp:940,topics:["JWT","bcrypt","Routes"]},
+  {id:52,cat:"backend",title:"File Upload",desc:"Upload dan cloud.",xp:960,topics:["Multer","Cloudinary","Validation"]},
+  {id:53,cat:"advanced",title:"TypeScript",desc:"JS dengan type safety.",xp:960,topics:["Types","Interface","Generics"]},
+  {id:54,cat:"advanced",title:"Testing",desc:"Unit dan integration.",xp:980,topics:["Jest","RTL","Mock"]},
+  {id:55,cat:"advanced",title:"Performance",desc:"Optimasi kecepatan.",xp:1000,topics:["Lazy loading","Code split","Lighthouse"]},
+  {id:56,cat:"advanced",title:"Web Security",desc:"Keamanan web.",xp:1020,topics:["XSS CSRF","HTTPS","CORS"]},
+  {id:57,cat:"advanced",title:"Git & GitHub",desc:"Version control.",xp:1040,topics:["commit push","Branch","Pull request"]},
+  {id:58,cat:"advanced",title:"CI/CD & Docker",desc:"Otomasi deploy.",xp:1060,topics:["GitHub Actions","Docker","Pipeline"]},
+  {id:59,cat:"advanced",title:"Deploy Full Stack",desc:"Deploy ke internet.",xp:1080,topics:["Vercel","Railway","Domain"]},
+  {id:60,cat:"final",title:"Final Project",desc:"Buat dan upload websitemu!",xp:2000,topics:["Desain","Coding","Upload & Preview"]}
+];
+var QS={html:[{t:"mc",q:"Tag heading terbesar?",o:["h6","h1","heading","head"],a:1},{t:"mc",q:"Atribut teks alternatif gambar?",o:["title","src","alt","href"],a:2},{t:"mc",q:"Tag untuk membuat link?",o:["link","a","href","nav"],a:1},{t:"mc",q:"Daftar berurutan pakai tag?",o:["ul","dl","ol","list"],a:2},{t:"mc",q:"Link buka tab baru pakai?",o:["target=_self","target=_blank","target=_new","target=_top"],a:1},{t:"mc",q:"Tag konten utama HTML5?",o:["div","section","main","content"],a:2},{t:"mc",q:"Input password tersembunyi?",o:["type text","type hidden","type password","type secret"],a:2},{t:"mc",q:"Tag kolom tabel?",o:["th","tr","td","col"],a:2},{t:"mc",q:"Komentar HTML yang benar?",o:["// komen","/* komen */","<!-- komen -->","# komen"],a:2},{t:"mc",q:"Atribut wajib pada form?",o:["method","name","id","class"],a:0},{t:"code",q:"Buat heading besar untuk teks 'Halo':",s:"<___>Halo</___>",a:"<h1>Halo</h1>",h:"Heading level 1"},{t:"code",q:"Link ke google.com buka tab baru:",s:'<a ___="https://google.com" ___="_blank">Google</a>',a:'<a href="https://google.com" target="_blank">Google</a>',h:"href dan target"},{t:"mc",q:"Block-level element?",o:["span","a","div","strong"],a:2},{t:"mc",q:"Tag teks tebal semantik?",o:["b","bold","strong","thick"],a:2},{t:"mc",q:"Tag daftar tidak berurutan?",o:["ol","ul","li","dl"],a:1}],css:[{t:"mc",q:"Komentar CSS?",o:["// komen","<!-- komen -->","/* komen */","# komen"],a:2},{t:"mc",q:"Property warna teks?",o:["font-color","text-color","color","foreground"],a:2},{t:"mc",q:"Aktifkan Flexbox?",o:["block","flex","inline","grid"],a:1},{t:"mc",q:"Tengahkan horizontal flexbox?",o:["align-items:center","justify-content:center","text-align:center","margin:auto"],a:1},{t:"mc",q:"Jarak di dalam border?",o:["margin","spacing","padding","border-spacing"],a:2},{t:"mc",q:"Media query max 768px?",o:["@media(max-width:768px)","@screen(768px)","@media max 768","@responsive 768"],a:0},{t:"mc",q:"Property animasi transisi?",o:["animate","transition","effect","transform"],a:1},{t:"mc",q:"Selektor untuk class btn?",o:["#btn",".btn","btn","*btn"],a:1},{t:"mc",q:"Property ukuran font?",o:["text-size","font-weight","font-size","size"],a:2},{t:"mc",q:"Position mengikuti scroll?",o:["static","relative","absolute","fixed"],a:3},{t:"code",q:"Set background biru #1565c0:",s:"div {\n  ___: #1565c0;\n}",a:"div {\n  background-color: #1565c0;\n}",h:"background-color"},{t:"code",q:"Teks putih, font-size 20px:",s:"p {\n  color: ___;\n  font-size: ___;\n}",a:"p {\n  color: white;\n  font-size: 20px;\n}",h:"white dan 20px"},{t:"mc",q:"Flexbox arah kolom?",o:["flex-direction:row","flex-direction:column","display:column","layout:column"],a:1},{t:"mc",q:"Shorthand margin semua sisi?",o:["margin-all:10px","margin:10px","padding:10px","border:10px"],a:1},{t:"mc",q:"CSS variable awalan?",o:["@","$","--","#"],a:2}],js:[{t:"mc",q:"Variabel tidak bisa diubah?",o:["var","let","const","fixed"],a:2},{t:"mc",q:"typeof 42?",o:["string","number","integer","float"],a:1},{t:"mc",q:"Tambah elemen akhir array?",o:["push()","pop()","shift()","unshift()"],a:0},{t:"mc",q:"Arrow function benar?",o:["function() =>","=> function","const f = () => {}","function => f()"],a:2},{t:"mc",q:"Ambil elemen by id?",o:["getElement(id)","getElementById(id)","query(id)","find(#id)"],a:1},{t:"mc",q:"Strict equality?",o:["=","==","===","!=="],a:2},{t:"mc",q:"Iterasi array tanpa index?",o:["for","forEach()","while","do while"],a:1},{t:"mc",q:"Promise sukses masuk ke?",o:[".catch()",".finally()",".then()",".resolve()"],a:2},{t:"mc",q:"Akses properti objek?",o:["obj->prop","obj::prop","obj.prop","obj.prop atau obj[prop]"],a:3},{t:"mc",q:"JSON.parse() untuk?",o:["String ke object","Object ke string","Buat JSON","Hapus JSON"],a:0},{t:"code",q:"Fungsi jumlahkan dua angka:",s:"function tambah(a, b) {\n  return ___;\n}",a:"function tambah(a, b) {\n  return a + b;\n}",h:"operator +"},{t:"code",q:"Array berisi 3 nama:",s:'const nama = [___, ___, ___];',a:'const nama = ["Ali", "Budi", "Cici"];',h:"string di tanda kutip"},{t:"mc",q:"Event listener klik?",o:["btn.onClick=f","btn.click(f)","btn.addEventListener('click',f)","btn.on('click',f)"],a:2},{t:"mc",q:"Template literal pakai?",o:["Kutip tunggal","Kutip ganda","Backtick","Kurung"],a:2},{t:"mc",q:"Tunggu Promise selesai?",o:["wait","pause","await","hold"],a:2}],react:[{t:"mc",q:"Extension file React?",o:[".js saja",".jsx atau .tsx",".react",".html"],a:1},{t:"mc",q:"Hook untuk state?",o:["useEffect","useContext","useState","useRef"],a:2},{t:"mc",q:"Props bersifat?",o:["Mutable","Immutable","Optional","Global"],a:1},{t:"mc",q:"useEffect default dijalankan?",o:["Sekali mount","Setiap render","Saat unmount","Tidak pernah"],a:1},{t:"mc",q:"Render list di React?",o:["for loop","forEach","array.map()","while"],a:2},{t:"mc",q:"Key prop berguna untuk?",o:["Styling","Identifikasi unik","Event","State"],a:1},{t:"mc",q:"JSX adalah?",o:["JS biasa","HTML murni","Sintaks extension JS","CSS preprocessor"],a:2},{t:"mc",q:"Update state benar?",o:["state=val","setState(val)","setS(val) dari useState","s=val"],a:2},{t:"mc",q:"Hook navigasi React Router?",o:["useLocation","useParams","useNavigate","useHistory"],a:2},{t:"mc",q:"Context API untuk?",o:["HTTP request","Styling","State global","Routing"],a:2},{t:"code",q:"useState untuk counter:",s:"const [___, setCount] = useState(0);",a:"const [count, setCount] = useState(0);",h:"nama variabel: count"},{t:"mc",q:"Conditional render ternary?",o:["{if(x)<A/>}","{x?<A/>:<B/>}","(x)=><A/>","[x&&<A/>]"],a:1},{t:"mc",q:"Data parent ke child?",o:["State","Props","Context","Redux"],a:1},{t:"mc",q:"Fragment React untuk?",o:["Styling","Wrap tanpa div extra","Routing","State"],a:1},{t:"mc",q:"Hook DOM ref?",o:["useState","useRef","useCallback","useMemo"],a:1}],backend:[{t:"mc",q:"Node.js adalah?",o:["Framework JS","Browser","Runtime JS server","Database"],a:2},{t:"mc",q:"Import module CommonJS?",o:["import x from x","const x=require('x')","include(x)","using x"],a:1},{t:"mc",q:"HTTP method buat data baru?",o:["GET","PUT","POST","DELETE"],a:2},{t:"mc",q:"Status code sukses?",o:["404","500","200","301"],a:2},{t:"mc",q:"npm untuk?",o:["Jalankan server","Manajemen package","Buat DB","Testing"],a:1},{t:"mc",q:"Middleware Express?",o:["DB layer","Fungsi antara req-res","Frontend","CSS"],a:1},{t:"mc",q:"SQL ambil semua dari users?",o:["FETCH * FROM users","GET ALL users","SELECT * FROM users","FIND users"],a:2},{t:"mc",q:"JWT singkatan?",o:["Java Web Token","JS Web Token","JSON Web Token","Joint Web Token"],a:2},{t:"mc",q:"Status 404 berarti?",o:["Server error","Unauthorized","Not Found","OK"],a:2},{t:"mc",q:"REST API format data?",o:["XML","JSON","HTML","CSV"],a:1},{t:"code",q:"Route Express GET /hello:",s:"app.___(\'/hello\', (req, res) => { res.send(\'Halo!\'); });",a:"app.get(\'/hello\', (req, res) => { res.send(\'Halo!\'); });",h:"method: get"},{t:"mc",q:"bcrypt untuk?",o:["Enkripsi DB","Hash password","JWT","SSL"],a:1},{t:"mc",q:"CORS adalah?",o:["DB protocol","Cross-Origin Resource Sharing","CSS framework","Lang"],a:1},{t:"mc",q:"MongoDB simpan data?",o:["Tabel","Dokumen JSON","File teks","Spreadsheet"],a:1},{t:"mc",q:"Env variable di file?",o:[".env","config.js","settings.json","app.ini"],a:0}],advanced:[{t:"mc",q:"TypeScript superset dari?",o:["Python","Java","JavaScript","C++"],a:2},{t:"mc",q:"Docker untuk?",o:["Testing","Containerization","DB management","Version control"],a:1},{t:"mc",q:"Git simpan perubahan?",o:["git save","git push","git commit","git add"],a:2},{t:"mc",q:"CI/CD singkatan?",o:["Code Integ/Delivery","Continuous Integ/Deploy","Comp Integ","Custom"],a:1},{t:"mc",q:"Lighthouse untuk?",o:["DB audit","Web performance audit","Security","Load test"],a:1},{t:"mc",q:"XSS attack adalah?",o:["SQL injection","Cross-Site Scripting","CSRF","Brute force"],a:1},{t:"mc",q:"HTTPS enkripsi?",o:["MD5","Base64","SSL/TLS","SHA1"],a:2},{t:"mc",q:"Lazy loading berguna?",o:["Keamanan","Load saat dibutuhkan","Styling","Testing"],a:1},{t:"mc",q:"git merge gabungkan?",o:["File","Branch","Repository","Commit"],a:1},{t:"mc",q:"Vercel/Netlify platform?",o:["DB hosting","Backend hosting","Frontend deploy","Email"],a:2},{t:"code",q:"TypeScript variabel string:",s:"const nama: ___ = 'Hasbhi';",a:"const nama: string = 'Hasbhi';",h:"tipe: string"},{t:"mc",q:"Unit test menguji?",o:["Seluruh app","Satu fungsi kecil","UI","Server"],a:1},{t:"mc",q:"Code splitting berguna?",o:["Pecah team","Muat saat dibutuhkan","Pisah CSS","Duplikasi"],a:1},{t:"mc",q:"Dockerfile berisi?",o:["Source code","Instruksi image Docker","DB schema","Test"],a:1},{t:"mc",q:"Pull Request GitHub?",o:["Download code","Request gabung branch","Hapus","Clone"],a:1}],final:[{t:"mc",q:"Elemen wajib website?",o:["HTML saja","HTML+CSS+JS","PHP+MySQL","Bootstrap"],a:1},{t:"mc",q:"Tag wajib setiap HTML?",o:["head saja","DOCTYPE html head body","body saja","div"],a:1},{t:"mc",q:"Responsive website?",o:["Cepat","Aman","Menyesuaikan layar","Gratis"],a:2},{t:"mc",q:"Sebelum deploy?",o:["Langsung deploy","Test localhost dulu","Tidak perlu","Langsung prod"],a:1},{t:"mc",q:"Domain adalah?",o:["File HTML","Nama alamat website","Server fisik","Database"],a:1},{t:"mc",q:"Optimasi gambar?",o:["Tidak perlu","Compress + WebP","4K selalu","Hapus"],a:1},{t:"mc",q:"Accessibility web?",o:["Mahal","Bisa diakses semua termasuk disabilitas","Premium","Berbayar"],a:1},{t:"mc",q:"BUKAN cara deploy?",o:["Vercel","Netlify","Photoshop","GitHub Pages"],a:2},{t:"mc",q:"README.md berisi?",o:["Source code","Dokumentasi project","DB schema","Gambar"],a:1},{t:"mc",q:"CORS diperiksa untuk?",o:["JWT","Request lintas domain","Cookie","Session"],a:1},{t:"mc",q:"SEO singkatan?",o:["Search Engine Optimization","Site Engine Op","Search Email","Site Element"],a:0},{t:"mc",q:"Website lebih cepat?",o:["Tambah gambar","Minify + compress","Font banyak","Animasi banyak"],a:1},{t:"mc",q:"Hosting adalah?",o:["Nama website","Tempat file di server","Browser","Framework"],a:1},{t:"mc",q:"Statis vs Dinamis?",o:["Statis pakai JS","Statis tetap Dinamis dari DB","Sama","Statis lambat"],a:1},{t:"mc",q:"Framework full-stack JS populer?",o:["Django","Laravel","Next.js","Spring Boot"],a:2}]};
+
+var doneLevels=[];
+try{doneLevels=JSON.parse(localStorage.getItem('knw_done')||'[]');}catch(e){}
+var currentCat='all';
+var quizLv=null,quizCur=0,quizAns={},quizTime=3600,quizTimer=null;
+var chatHistory=[];
+
+function saveProgress(){try{localStorage.setItem('knw_done',JSON.stringify(doneLevels));}catch(e){}}
+function getXP(){return LEVELS.filter(function(l){return doneLevels.indexOf(l.id)>=0;}).reduce(function(s,l){return s+l.xp;},0);}
+function updateXP(){document.getElementById('xpbadge').textContent='⭐ '+getXP().toLocaleString()+' XP';}
+
+function showPage(p){
+  var pages=document.querySelectorAll('.page');
+  for(var i=0;i<pages.length;i++) pages[i].classList.remove('active');
+  var el=document.getElementById('pg-'+p);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goHome(){showPage('home');renderLevels();}
+function goMateri(){showPage('home');setTimeout(function(){var el=document.getElementById('materi');if(el)el.scrollIntoView({behavior:'smooth'});},100);}
+
+function openMateri(id){
+  var pageId=MATERI_PAGE[id];
+  if(pageId) showPage(pageId);
+  else openQuiz(id);
+}
+
+function filterCat(cat,btn){
+  currentCat=cat;
+  var btns=document.querySelectorAll('.cb');
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove('on');
+  btn.classList.add('on');
+  renderLevels();
+}
+
+function renderLevels(){
+  var grid=document.getElementById('lgrid');
+  if(!grid) return;
+  var filtered=currentCat==='all'?LEVELS:LEVELS.filter(function(l){return l.cat===currentCat;});
+  var html='';
+  for(var i=0;i<filtered.length;i++){
+    var lv=filtered[i];
+    var c=CATS[lv.cat];
+    var done=doneLevels.indexOf(lv.id)>=0;
+    var unlk=lv.id===1||doneLevels.indexOf(lv.id-1)>=0||done;
+    var topHtml='';
+    for(var j=0;j<Math.min(3,lv.topics.length);j++) topHtml+='<span class="top">'+lv.topics[j]+'</span>';
+    var topBg=done?'background:linear-gradient(90deg,'+c.color+','+c.color+'80)':'';
+    var cardBorder=done?'border-color:'+c.color+'50':'';
+    var matFn=unlk?'openMateri('+lv.id+')':'';
+    var tesFn=unlk?'openQuiz('+lv.id+')':'';
+    html+='<div class="lc'+(unlk?'':' locked')+'" style="'+cardBorder+'">';
+    html+='<div class="ltop" style="'+topBg+'"></div>';
+    html+='<div class="lb">';
+    html+='<div class="lh"><div style="display:flex;align-items:center;gap:7px"><span style="font-size:18px">'+c.icon+'</span>';
+    html+='<span class="lvbadge" style="background:'+c.color+'18;color:'+c.color+'">LVL '+lv.id+'</span></div>';
+    html+='<span style="font-size:16px">'+(done?'✅':(unlk?'':'🔒'))+'</span></div>';
+    html+='<div class="lt">'+lv.title+'</div>';
+    html+='<div class="ld">'+lv.desc+'</div>';
+    html+='<div class="tops">'+topHtml+'</div>';
+    html+='<div class="lf">';
+    html+='<div class="lf-row"><span style="color:#64748b;font-size:11px;font-weight:700">'+(done?'✅ Selesai':'📌 '+lv.xp+' XP')+'</span>';
+    html+='<span style="color:'+c.color+';font-size:11px;font-weight:700">+'+lv.xp+' XP</span></div>';
+    if(unlk){
+      html+='<div class="lf-btns">';
+      html+='<button class="lbtn" style="background:'+c.color+'18;color:'+c.color+';border:1px solid '+c.color+'30" onclick="'+matFn+'">📖 Belajar</button>';
+      html+='<button class="lbtn" style="background:linear-gradient(135deg,'+c.color+','+c.color+'cc);color:#fff" onclick="'+tesFn+'">📝 Tes</button>';
+      html+='</div>';
+    } else {
+      html+='<div style="color:#90a4ae;font-size:11px;font-weight:700;text-align:center;padding:4px 0">🔒 Selesaikan level sebelumnya</div>';
+    }
+    html+='</div></div></div>';
+  }
+  grid.innerHTML=html;
+}
+
+function openQuiz(id){
+  quizLv=null;
+  for(var i=0;i<LEVELS.length;i++){if(LEVELS[i].id===id){quizLv=LEVELS[i];break;}}
+  if(!quizLv) return;
+  quizCur=0;quizAns={};quizTime=3600;
+  document.getElementById('qlvllabel').textContent='LEVEL '+quizLv.id+' — '+quizLv.title;
+  document.getElementById('qtimer').style.display='';
+  document.getElementById('qov').classList.add('open');
+  startQTimer();renderQ();
+}
+function closeQuiz(){clearInterval(quizTimer);document.getElementById('qov').classList.remove('open');}
+function startQTimer(){
+  clearInterval(quizTimer);
+  quizTimer=setInterval(function(){
+    quizTime--;
+    var mm=String(Math.floor(quizTime/60)).padStart(2,'0'),ss=String(quizTime%60).padStart(2,'0');
+    document.getElementById('qtimer').textContent='⏱ '+mm+':'+ss;
+    if(quizTime<=0){clearInterval(quizTimer);showResult();}
+  },1000);
+}
+function renderQ(){
+  var qs=QS[quizLv.cat]||QS.html;
+  var q=qs[quizCur];
+  document.getElementById('qphaselabel').textContent='Soal '+(quizCur+1)+'/15';
+  document.getElementById('qprog').style.width=((quizCur/15)*100)+'%';
+  var html='<div class="qbox"><div class="qt">'+(q.t==='code'?'💻 CODING':'📝 PILIHAN GANDA')+'</div><div class="qq">'+q.q+'</div></div>';
+  if(q.t==='mc'){
+    html+='<div class="opts">';
+    for(var i=0;i<q.o.length;i++) html+='<button class="ob" onclick="submitMC('+i+')">'+String.fromCharCode(65+i)+'. '+q.o[i]+'</button>';
+    html+='</div>';
+  } else {
+    if(q.h) html+='<div style="color:#64748b;font-size:12px;margin-bottom:8px">💡 Hint: '+q.h+'</div>';
+    html+='<div class="cstarter">'+q.s+'</div>';
+    html+='<textarea class="ca" id="codeAns" rows="3" placeholder="Tulis jawaban kode kamu..."></textarea>';
+    html+='<button class="btnp" style="margin-top:8px;font-size:13px;padding:10px 20px" onclick="submitCode()">Cek ✓</button>';
+  }
+  document.getElementById('qbody').innerHTML=html;
+}
+function showFeedback(ok,correctAns){
+  var fb=document.createElement('div');
+  fb.className='fb '+(ok?'ok':'no');
+  fb.textContent=ok?'✅ Benar!':'❌ Salah. Jawaban: '+correctAns;
+  var body=document.getElementById('qbody');
+  body.insertBefore(fb,body.firstChild);
+  var btns=body.querySelectorAll('.ob');
+  for(var i=0;i<btns.length;i++) btns[i].onclick=null;
+  var btn=body.querySelector('.btnp');
+  if(btn) btn.onclick=null;
+  setTimeout(function(){
+    quizCur++;
+    var qs=QS[quizLv.cat]||QS.html;
+    if(quizCur>=qs.length||quizCur>=15){clearInterval(quizTimer);showResult();}
+    else renderQ();
+  },1800);
+}
+function submitMC(i){
+  var qs=QS[quizLv.cat]||QS.html;
+  var q=qs[quizCur];
+  var ok=(i===q.a);
+  if(ok) quizAns[quizCur]=true;
+  showFeedback(ok,q.o[q.a]);
+}
+function submitCode(){
+  var qs=QS[quizLv.cat]||QS.html;
+  var q=qs[quizCur];
+  var el=document.getElementById('codeAns');
+  var inp=el?el.value.trim().replace(/\s+/g,' '):'';
+  var expected=q.a.trim().replace(/\s+/g,' ');
+  var ok=(inp===expected);
+  if(ok) quizAns[quizCur]=true;
+  showFeedback(ok,q.a);
+}
+function showResult(){
+  clearInterval(quizTimer);
+  document.getElementById('qtimer').style.display='none';
+  var score=Object.keys(quizAns).filter(function(k){return quizAns[k];}).length;
+  var pass=score>=10;
+  document.getElementById('qphaselabel').textContent='Hasil Tes';
+  document.getElementById('qprog').style.width='100%';
+  var html='<div class="res">';
+  html+='<div style="font-size:56px;margin-bottom:14px">'+(pass?'🏆':'📚')+'</div>';
+  html+='<h2 style="color:'+(pass?'#1565c0':'#c62828')+';font-size:24px;font-weight:900;margin-bottom:8px">'+(pass?'Selamat! Level Selesai!':'Belum Lulus, Semangat!')+'</h2>';
+  html+='<div style="font-size:42px;font-weight:900;color:#1565c0;margin-bottom:8px">'+score+'/15</div>';
+  html+='<div style="color:#64748b;margin-bottom:22px;font-size:14px">'+(pass?'+'+quizLv.xp+' XP diperoleh!':'Minimal 10/15 untuk lulus.')+'</div>';
+  html+='<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">';
+  html+='<button class="btns" onclick="closeQuiz()">Kembali</button>';
+  if(pass) html+='<button class="btnp" onclick="completeLevel('+quizLv.id+')">Lanjut Level →</button>';
+  else html+='<button class="btnp" onclick="retryQuiz()">Coba Lagi 🔄</button>';
+  html+='</div></div>';
+  document.getElementById('qbody').innerHTML=html;
+}
+function completeLevel(id){
+  if(doneLevels.indexOf(id)<0) doneLevels.push(id);
+  saveProgress();updateXP();renderLevels();closeQuiz();
+  document.getElementById('qtimer').style.display='';
+}
+function retryQuiz(){
+  quizCur=0;quizAns={};quizTime=3600;
+  document.getElementById('qtimer').style.display='';
+  startQTimer();renderQ();
+}
+function handleFile(input){
+  var file=input.files[0];
+  if(!file) return;
+  if(!file.name.match(/\.html?$/i)){alert('Hanya file .html!');return;}
+  document.getElementById('flabel').textContent=file.name;
+  document.getElementById('fguide').style.display='none';
+  var reader=new FileReader();
+  reader.onload=function(e){
+    document.getElementById('fprevlabel').textContent='🌐 '+file.name;
+    document.getElementById('fframe').srcdoc=e.target.result;
+    document.getElementById('fprev').style.display='block';
+  };
+  reader.readAsText(file);
+}
+function closePreview(){
+  document.getElementById('fprev').style.display='none';
+  document.getElementById('flabel').textContent='Klik untuk upload file HTML';
+  document.getElementById('fguide').style.display='block';
+  document.getElementById('finput').value='';
+}
+function toggleChat(){
+  var cb=document.getElementById('chatbox');
+  var tog=document.getElementById('ctoggle');
+  cb.classList.toggle('open');
+  tog.textContent=cb.classList.contains('open')?'✕':'🤖';
+}
+function appendMsg(text,role,raw){
+  var div=document.createElement('div');
+  div.className='cm '+role;
+  if(raw) div.innerHTML=text; else div.textContent=text;
+  var cms=document.getElementById('cms');
+  cms.appendChild(div);
+  cms.scrollTop=cms.scrollHeight;
+  return div;
+}
+async function sendChat(){
+  var inp=document.getElementById('cinput');
+  var msg=inp.value.trim();
+  if(!msg) return;
+  inp.value='';
+  appendMsg(msg,'u');
+  chatHistory.push({role:'user',content:msg});
+  var dotsDiv=appendMsg('<span class="dots"><span></span><span></span><span></span></span>','b',true);
+  try{
+    var res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key':'',
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:800,
+        system:'Kamu Hasbhi Bot, asisten web development dari Kuy Nge Website. Jawab HANYA pertanyaan tentang HTML, CSS, JS, React, Node.js, database, hosting, deploy, dan web dev. Tolak sopan jika di luar topik web. Jawab dalam Bahasa Indonesia santai, pakai emoji secukupnya.',
+        messages:chatHistory
+      })
+    });
+    if(!res.ok){
+      var errData=await res.json().catch(function(){return {};});
+      throw new Error(errData.error&&errData.error.message?errData.error.message:'HTTP '+res.status);
+    }
+    var data=await res.json();
+    var reply=(data.content&&data.content[0]&&data.content[0].text)?data.content[0].text:'Ada error, coba lagi! 😅';
+    dotsDiv.remove();
+    appendMsg(reply,'b');
+    chatHistory.push({role:'assistant',content:reply});
+  }catch(e){
+    dotsDiv.remove();
+    appendMsg('⚠️ Error: '+e.message+'. Pastikan kamu buka file ini langsung dari browser (bukan preview app).','b');
+  }
+}
+document.getElementById('cinput').addEventListener('keydown',function(e){if(e.key==='Enter')sendChat();});
+updateXP();
+renderLevels();
+</script>
+</body>
+</html>
