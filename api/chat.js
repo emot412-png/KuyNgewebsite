@@ -5,28 +5,27 @@ export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   try {
     const { messages } = req.body;
-    const apiKey = process.env.ANTHROPIC_API_KEY;
-    if (!apiKey) {
-      return res.status(500).json({ error: 'API key not configured' });
-    }
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    const apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01'
+        'Authorization': 'Bearer ' + apiKey
       },
       body: JSON.stringify({
-        model: 'claude-haiku-4-5-20251001',
+        model: 'llama3-8b-8192',
         max_tokens: 800,
-        system: 'Kamu Hasbhi Bot, asisten web development dari Kuy Nge Website. Jawab HANYA pertanyaan tentang HTML, CSS, JS, React, Node.js, database, hosting, deploy, dan web dev. Bahasa Indonesia santai.',
-        messages: messages.slice(-10)
+        messages: [
+          { role: 'system', content: 'Kamu Hasbhi Bot, asisten web development dari Kuy Nge Website. Jawab HANYA pertanyaan tentang HTML, CSS, JS, React, Node.js, database, hosting, deploy, dan web dev. Bahasa Indonesia santai, pakai emoji.' },
+          ...messages.slice(-10)
+        ]
       })
     });
     const data = await response.json();
-    const reply = data.content?.[0]?.text || 'Maaf, coba lagi!';
+    const reply = data.choices?.[0]?.message?.content || 'Maaf, coba lagi!';
     return res.status(200).json({ reply });
   } catch (error) {
-    return res.status(500).json({ error: 'Server error' });
+    return res.status(500).json({ error: error.message });
   }
 }
